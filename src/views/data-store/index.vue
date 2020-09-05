@@ -2,6 +2,10 @@
   <a-alert :message="message" banner type="success" closable />
   <div :class="$style.root">home，{{ year }}</div>
 
+  <ul :class="$style.list">
+    <quick-sort :data="[5, 6, 7, 8, 4, 1, 3, 9, 0, 2]" />
+  </ul>
+
   <a-button-group>
     <a-button type="primary" @click="onClickA"> 加1加</a-button>
     <a-button type="primary" @click="onClickB"> 减1减 </a-button>
@@ -9,12 +13,14 @@
 </template>
 
 <script lang="ts">
+import QuickSort from '../../components/QuickSort.vue'
+
 import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: '',
-  data() {
-    return {}
+  components: {
+    QuickSort
   },
   computed: {
     ...mapState(['year']),
@@ -26,10 +32,10 @@ export default {
     ...mapMutations(['SET_YEAR']),
     ...mapActions(['onSetYear']),
     onClickA() {
-      this.SET_YEAR(-1)
+      this.SET_YEAR(1)
     },
     onClickB() {
-      this.onSetYear(1)
+      this.onSetYear(-1)
     }
   }
 }
@@ -37,4 +43,6 @@ export default {
 <style lang="stylus" module>
 .root
   background #f4f4f4
+.list
+  display flex
 </style>
