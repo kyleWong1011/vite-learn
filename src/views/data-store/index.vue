@@ -17,6 +17,19 @@ import QuickSort from '../../components/QuickSort.vue'
 
 import { mapState, mapMutations, mapActions } from 'vuex'
 
+function normalizeNamespace(fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace
+      namespace = ''
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/'
+    }
+    console.log({ namespace, map })
+    return fn(namespace, map)
+  }
+}
+
 export default {
   name: '',
   components: {
