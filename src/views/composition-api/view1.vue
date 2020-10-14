@@ -7,15 +7,11 @@
   </div>
 
   <a-button-group>
-    <a-button type="primary"
-              @click="add"> 加1加</a-button>
-    <a-button type="primary"
-              @click="minus"> 减1减</a-button>
+    <a-button type="primary" @click="add"> 加1加</a-button>
+    <a-button type="primary" @click="minus"> 减1减</a-button>
   </a-button-group>
 
-  <Child :title="title"
-         :count="state.count"
-         @on-click="onClick" />
+  <Child :title="title" :count="state.count" @on-click="onClick" />
 </template>
 
 <script lang="ts">

@@ -1,0 +1,43 @@
+import { reactive, toRefs, computed, Ref, ComputedRef } from 'vue'
+
+interface ReactivedData {
+  text?: string
+}
+
+interface FetchState {
+  loading: boolean
+  error: boolean
+  data: ReactivedData
+}
+
+interface FetchDataVars {
+  loading: Ref<boolean>
+  error: Ref<boolean>
+  data: Ref<object>
+  fetchData: Function
+  hasData: ComputedRef<boolean>
+}
+
+export default (): FetchDataVars => {
+  const state = reactive<FetchState>({
+    loading: true,
+    error: false,
+    data: {}
+  })
+
+  const fetchData = async () => {
+    state.loading = true
+    setTimeout(() => {
+      state.data = { text: 'example' }
+      state.loading = false
+    }, 1000)
+  }
+
+  const hasData = computed(() => state.data && !!state.data.text)
+
+  return {
+    ...toRefs(state),
+    fetchData,
+    hasData
+  }
+}

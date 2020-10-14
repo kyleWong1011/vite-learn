@@ -2,19 +2,32 @@ import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    name: 'CompositionApi',
+    path: '/composition-api',
+    name: 'compositionApi',
     component: () =>
-      import(/* webpackChunkName: "composition-api" */ '../views/composition-api/index.vue')
+      import(
+        /* webpackChunkName: "composition-api" */ '../views/composition-api/index.vue'
+      )
+  },
+  {
+    path: '/hooks',
+    name: 'hooks',
+    component: () =>
+      import(
+        /* webpackChunkName: "composition-api" */ '../views/hooks/index.vue'
+      )
   },
   {
     path: '/data_store',
-    name: 'Store',
-    component: () => import(/* webpackChunkName: "data-store" */ '../views/data-store/index.vue')
+    name: 'store',
+    component: () =>
+      import(
+        /* webpackChunkName: "data-store" */ '../views/data-store/index.vue'
+      )
   },
   {
     path: '/functional-component',
-    name: 'FuncComp',
+    name: 'funcComp',
     component: () =>
       import(
         /* webpackChunkName: "functional-component" */ '../views/functional-component/index.vue'
@@ -22,13 +35,15 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/slot-api',
-    name: 'Slot',
-    component: () => import(/* webpackChunkName: "slot-api" */ '../views/slot-api/index.vue')
+    name: 'slot',
+    component: () =>
+      import(/* webpackChunkName: "slot-api" */ '../views/slot-api/index.vue')
   },
   {
     path: '/todo-list',
-    name: 'TodoList',
-    component: () => import(/* webpackChunkName: "todo-list" */ '../views/todo-list/index.vue')
+    name: 'todoList',
+    component: () =>
+      import(/* webpackChunkName: "todo-list" */ '../views/todo-list/index.vue')
   }
 ]
 
