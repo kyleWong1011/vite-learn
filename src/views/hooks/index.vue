@@ -8,11 +8,12 @@
 
 <script lang="ts">
 import useFetchData from '../../composables/use-fetch-data'
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
   setup() {
     const { loading, error, data, fetchData, hasData } = useFetchData()
+
     return {
       loading,
       error,
@@ -21,8 +22,12 @@ export default defineComponent({
       hasData
     }
   },
-  mounted() {
+  created() {
+    console.log('created')
     this.fetchData()
+  },
+  mounted() {
+    // this.fetchData()
   }
 })
 </script>

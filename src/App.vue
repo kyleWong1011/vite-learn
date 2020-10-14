@@ -1,22 +1,26 @@
 <template>
-  <div :class="$style.root" class="border-bottom-1px">
-    <router-link v-for="route in routes" :to="route.path" :key="route.name" :class="$style.link">
+  <div :class="$style.root"
+       class="border-bottom-1px">
+    <router-link v-for="route in routes"
+                 :to="route.path"
+                 :key="route.name"
+                 :class="$style.link">
       {{ route.name }}
     </router-link>
   </div>
   <router-view />
 </template>
 
-<script>
-import { reactive, onMounted } from 'vue'
+<script lang="ts">
+import { reactive, onMounted, defineComponent } from 'vue'
 
 import { routes } from './router'
-export default {
+export default defineComponent({
   name: 'App',
   setup() {
     return { routes: reactive(routes) }
   }
-}
+})
 </script>
 <style lang="stylus" module>
 @import './style/variable'
