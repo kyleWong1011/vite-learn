@@ -23,15 +23,7 @@ import Child from './components/Child.vue'
 
 import { ThemeSymbol, CountSymbol } from './config'
 
-import {
-  reactive,
-  computed,
-  ref,
-  provide,
-  readonly,
-  onBeforeMount,
-  onMounted
-} from 'vue'
+import { reactive, computed, ref, provide, onBeforeMount, onMounted } from 'vue'
 
 export default {
   props: {
@@ -64,30 +56,40 @@ export default {
     }
 
     let title = ref('新的内容')
-    const copyState = readonly(state)
 
-    function onClick(count) {
+    function onClick(count: number) {
       state.count += count
       console.log(' state.count ', state.count)
     }
+
     onBeforeMount(() => {
       console.log('before mounted!')
     })
+
     onMounted(() => {
       console.log('mounted!')
     })
 
     provide(ThemeSymbol, themeRef)
+
     provide(CountSymbol, countRef)
+
     setTimeout(() => {
-      // TODO! 报错
-      // copyState.count += 200
+      // METHOD 报错
       themeRef.value = 'provide新值'
     }, 1000)
-    clearInterval(state.timer)
-    state.timer = setInterval(() => {
-      countRef.value += 100
-    }, 1000)
+
+    console.log({ self })
+    console.log({ window })
+    console.log({ globalThis })
+
+    if (state.timer) {
+      clearInterval(Number(state.timer))
+    } else {
+      state.timer = setInterval(() => {
+        countRef.value += 100
+      }, 1000)
+    }
 
     return {
       state,
@@ -99,6 +101,12 @@ export default {
       themeRef,
       onClick
     }
+  },
+  created() {
+    console.log('created', this)
+  },
+  mounted() {
+    console.log('out mounted~', this)
   }
 }
 </script>

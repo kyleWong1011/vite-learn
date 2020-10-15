@@ -2,6 +2,10 @@ import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
 export const routes: RouteRecordRaw[] = [
   {
+    path: '/',
+    redirect: '/composition-api'
+  },
+  {
     path: '/composition-api',
     name: 'compositionApi',
     component: () => import('../views/composition-api/index.vue')
@@ -20,6 +24,11 @@ export const routes: RouteRecordRaw[] = [
     path: '/functional-component',
     name: 'funcComp',
     component: () => import('../views/functional-component/index.vue')
+  },
+  {
+    path: '/transition',
+    name: 'transition',
+    component: () => import('../views/transition/index.vue')
   },
   {
     path: '/slot-api',

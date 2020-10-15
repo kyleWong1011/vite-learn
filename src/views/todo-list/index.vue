@@ -1,31 +1,34 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.main">
-      <a-input-search
-        v-model:value="state.value"
-        placeholder="input search text"
-        @search="onSubmit"
-        @change="onChange"
-        @clear="onClear"
-      >
+      <a-input-search v-model:value="state.value"
+                      placeholder="input search text"
+                      @search="onSubmit"
+                      @change="onChange">
         <template v-slot:enterButton>
           <a-button> 提交 </a-button>
         </template>
       </a-input-search>
-      <a-button :class="$style.btn" @click="onFilter"> 过滤 </a-button>
-      <a-button :class="$style.btn" @click="onReset"> 重置 </a-button>
+      <a-button :class="$style.btn"
+                @click="onFilter"> 过滤 </a-button>
+      <a-button :class="$style.btn"
+                @click="onReset"> 重置 </a-button>
     </div>
     <ul :class="$style.listWrapper">
-      <li
-        v-for="(item, index) in state.list"
-        :key="item.id"
-        :class="$style.item"
-      >
-        <span style="margin-right: 15px">{{ index }}</span>
-        <p :class="$style.text" @click="onTest">
+      <li v-for="(item, index) in state.list"
+          :key="item.id"
+          :style="{ color:'#'+item.id}"
+          :class="$style.item">
+        <span style="margin-right: 15px">
+          {{ index }}
+        </span>
+        <p :class="$style.text"
+           @click="onTest">
           {{ item.name }}
         </p>
-        <a-button type="danger" :class="$style.btn" @click="onRemove(index)">
+        <a-button type="danger"
+                  :class="$style.btn"
+                  @click="onRemove(index)">
           remove
         </a-button>
       </li>
@@ -34,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, computed } from 'vue'
+import { reactive } from 'vue'
 
 function randomHexColorCode() {
   return (Math.random() * 0xfffff * 1000000).toString(16).slice(0, 6)
@@ -62,8 +65,7 @@ export default {
 
     function onSubmit() {
       if (state.value === '') return alert('输入项不得为空')
-      if (state.originList.some(item => item.name === state.value))
-        return alert('不得重复')
+      if (state.list.some(k => k.name === state.value)) return alert('不得重复')
 
       state.list.push({
         id: randomHexColorCode(),
@@ -84,7 +86,7 @@ export default {
       )
     }
 
-    function onChange(ev) {
+    function onChange() {
       if (state.value === '' && state.originList.length > 0) {
         state.list = state.originList.slice()
       }

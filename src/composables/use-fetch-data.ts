@@ -1,15 +1,12 @@
 import { reactive, toRefs, computed, Ref, ComputedRef } from 'vue'
-
 interface ReactivedData {
   text?: string
 }
-
 interface FetchState {
   loading: boolean
   error: boolean
   data: ReactivedData
 }
-
 interface FetchDataVars {
   loading: Ref<boolean>
   error: Ref<boolean>
