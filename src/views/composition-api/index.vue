@@ -7,15 +7,11 @@
   </div>
 
   <a-button-group>
-    <a-button type="primary"
-              @click="add"> 加1加</a-button>
-    <a-button type="primary"
-              @click="minus"> 减1减</a-button>
+    <a-button type="primary" @click="add"> 加1加</a-button>
+    <a-button type="primary" @click="minus"> 减1减</a-button>
   </a-button-group>
 
-  <Child :title="title"
-         :count="state.count"
-         @on-click="onClick" />
+  <Child :title="title" :count="state.count" @on-click="onClick" />
 </template>
 
 <script lang="ts">
@@ -35,7 +31,7 @@ export default {
   components: {
     Child
   },
-  setup(props, ctx) {
+  setup(props: any, ctx) {
     const state = reactive({
       count: 0,
       timer: null
@@ -83,13 +79,13 @@ export default {
     console.log({ window })
     console.log({ globalThis })
 
-    if (state.timer) {
-      clearInterval(Number(state.timer))
-    } else {
-      state.timer = setInterval(() => {
-        countRef.value += 100
-      }, 1000)
-    }
+    // if (state.timer) {
+    //   clearInterval(Number(state.timer))
+    // } else {
+    //   state.timer = setInterval(() => {
+    //     countRef.value += 100
+    //   }, 1000)
+    // }
 
     return {
       state,

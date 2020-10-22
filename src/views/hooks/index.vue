@@ -1,7 +1,7 @@
 <template>
   <a-skeleton v-if="loading" />
-  <div v-if="error"> An Error occured, please try again</div>
-  <div v-if="hasData"> {{ data.text }} </div>
+  <div v-if="error">An Error occured, please try again</div>
+  <div v-if="hasData">{{ data.text }}</div>
 </template>
 
 <script lang="ts">
