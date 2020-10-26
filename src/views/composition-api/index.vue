@@ -31,7 +31,7 @@ export default {
   components: {
     Child
   },
-  setup(props: any, ctx) {
+  setup() {
     const state = reactive({
       count: 0,
       timer: null

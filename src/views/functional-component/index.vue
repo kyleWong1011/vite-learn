@@ -7,8 +7,6 @@
 <script lang="ts">
 import { default as FunctionComp, FunctionComp1, FunctionComp2 } from './components/FunctionalComp'
 
-import { mapState, mapMutations, mapActions } from 'vuex'
-
 export default {
   name: 'FunctionalComp',
   data() {

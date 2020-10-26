@@ -51,6 +51,22 @@ fixed-full($zIndex = 2)
   left 0
   right 0
   bottom 0
+/* 自定义滚动条 */
+scroll-bar()
+  &::-webkit-scrollbar
+    width 6px
+    height 6px
+  /* 滚动条滑块 */
+  &::-webkit-scrollbar-thumb
+    visibility hidden
+    border-radius 3px
+    background rgba(153, 153, 153, 0.3)
+    transition all 0.28s ease
+  &:hover::-webkit-scrollbar-thumb
+    visibility visible
+  /* 滚动条轨道 */
+  &::-webkit-scrollbar-track
+    background none
 // 清除浮动
 clearfix()
   &:before, &:after

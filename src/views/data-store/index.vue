@@ -1,57 +1,63 @@
 <template>
-  <a-alert :message="message" banner type="success" closable />
-  <div :class="$style.root">home，{{ year }}</div>
+  <div>
+    <a-alert :message="`hello ${year}`"
+             banner
+             type="success"
+             closable />
+    <div :class="$style.root">home，{{ year }}</div>
 
-  <ul :class="$style.list">
-    <quick-sort :data="[5, 6, 7, 8, 4, 1, 3, 9, 0, 2]" />
-  </ul>
+    <ul :class="$style.list">
+      <quick-sort :data="[5, 6, 7, 8, 4, 1, 3, 9, 0, 2]" />
+    </ul>
 
-  <a-button-group>
-    <a-button type="primary" @click="onClickA"> 加1加</a-button>
-    <a-button type="primary" @click="onClickB"> 减1减 </a-button>
-  </a-button-group>
+    <a-button-group>
+      <a-button type="primary"
+                @click="onClickA"> 加1加</a-button>
+      <a-button type="primary"
+                @click="onClickB"> 减1减 </a-button>
+    </a-button-group>
+  </div>
 </template>
 
 <script lang="ts">
 import QuickSort from '../../components/QuickSort.vue'
 
+import { defineComponent } from 'vue'
 import { mapState, mapMutations, mapActions } from 'vuex'
 
-function normalizeNamespace(fn) {
-  return function (namespace, map) {
-    if (typeof namespace !== 'string') {
-      map = namespace
-      namespace = ''
-    } else if (namespace.charAt(namespace.length - 1) !== '/') {
-      namespace += '/'
-    }
-    console.log({ namespace, map })
-    return fn(namespace, map)
-  }
-}
+// function normalizeNamespace(fn) {
+//   return function (namespace, map) {
+//     if (typeof namespace !== 'string') {
+//       map = namespace
+//       namespace = ''
+//     } else if (namespace.charAt(namespace.length - 1) !== '/') {
+//       namespace += '/'
+//     }
+//     console.log({ namespace, map })
+//     return fn(namespace, map)
+//   }
+// }
 
-export default {
+export default defineComponent({
   name: '',
   components: {
     QuickSort
   },
   computed: {
-    ...mapState(['year']),
-    message() {
-      return `hello, ${this.year}`
-    }
+    ...mapState(['year'])
   },
   methods: {
     ...mapMutations(['SET_YEAR']),
     ...mapActions(['onSetYear']),
     onClickA() {
+      console.log('this=>')
       this.SET_YEAR(1)
     },
     onClickB() {
       this.onSetYear(-1)
     }
   }
-}
+})
 </script>
 <style lang="stylus" module>
 .root

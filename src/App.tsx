@@ -8,7 +8,7 @@ export default defineComponent({
   setup() {
     return () => (
       <>
-        <div class="root">
+        <div class="nav">
           {routes.map(route => (
             <RouterLink class="link" to={route.path}>
               {/* 最好使用函数

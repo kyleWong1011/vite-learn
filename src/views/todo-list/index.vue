@@ -14,7 +14,8 @@
       <a-button :class="$style.btn"
                 @click="onReset"> 重置 </a-button>
     </div>
-    <ul :class="$style.listWrapper">
+    <ul v-if="state.list.length>0"
+        :class="$style.listWrapper">
       <li v-for="(item, index) in state.list"
           :key="item.id"
           :style="{ color:'#'+item.id}"
@@ -33,11 +34,14 @@
         </a-button>
       </li>
     </ul>
+
+    <a-empty v-else />
   </div>
 </template>
 
 <script lang="ts">
-import { reactive } from 'vue'
+import { reactive, getCurrentInstance } from 'vue'
+import { message as $message } from 'ant-design-vue'
 
 function randomHexColorCode() {
   return (Math.random() * 0xfffff * 1000000).toString(16).slice(0, 6)
@@ -56,16 +60,20 @@ interface State {
 
 export default {
   name: 'TodoList',
-  setup() {
+  setup(props, ctx) {
     const state: State = reactive({
       value: '',
       list: [],
       originList: []
     })
 
-    function onSubmit() {
-      if (state.value === '') return alert('输入项不得为空')
-      if (state.list.some(k => k.name === state.value)) return alert('不得重复')
+    const instance = getCurrentInstance()
+    console.log({ instance })
+
+    function onSubmit(): any {
+      if (state.value === '') return $message.error('不得为空')
+      if (state.list.some(k => k.name === state.value))
+        return $message.error('不得重复')
 
       state.list.push({
         id: randomHexColorCode(),
@@ -79,8 +87,8 @@ export default {
       state.list.splice(index, 1)
     }
 
-    function onFilter() {
-      if (state.value === '') return alert('输入项不得为空')
+    function onFilter(): any {
+      if (state.value === '') return $message.error('输入项不得为空')
       state.list = state.originList.filter(item =>
         item.name.includes(state.value)
       )
@@ -93,7 +101,7 @@ export default {
     }
 
     function onReset() {
-      state.value = ''
+      state.value.length > 0 && (state.value = '')
       if (state.originList.length > 0) {
         state.list = state.originList.slice()
       }

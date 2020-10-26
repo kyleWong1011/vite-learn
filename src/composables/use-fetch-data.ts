@@ -7,6 +7,8 @@ interface FetchState {
   error: boolean
   data: ReactivedData
 }
+
+// 返回对象
 interface FetchDataVars {
   loading: Ref<boolean>
   error: Ref<boolean>
@@ -30,6 +32,7 @@ export default (): FetchDataVars => {
     }, 1000)
   }
 
+  // const hasData = computed(() => state.data && !!state.data.text)
   const hasData = computed(() => state.data && !!state.data.text)
 
   return {
