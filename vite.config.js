@@ -1,8 +1,8 @@
-import path from 'path'
+const { resolve } = require('path')
 
 module.exports = {
   // 导入别名
   alias: {
-    '@': path.resolve(__dirname, './src')
+    '/@/': resolve(__dirname, 'src')
   }
 }
