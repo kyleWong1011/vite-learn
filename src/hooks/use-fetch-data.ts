@@ -27,9 +27,9 @@ export default (): FetchDataVars => {
   const fetchData = async () => {
     state.loading = true
     setTimeout(() => {
-      state.data = { text: 'example' }
+      state.data = { text: '2' }
       state.loading = false
-    }, 1000)
+    }, 600)
   }
 
   // const hasData = computed(() => state.data && !!state.data.text)
