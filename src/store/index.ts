@@ -1,4 +1,5 @@
-import { createStore, ActionContext } from 'vuex'
+import { createStore } from 'vuex'
+import todomvc from './modules/todomvc'
 
 export interface State {
   year: number
@@ -17,5 +18,8 @@ export default createStore<State>({
     onSetYear: ({ commit }, year: number) => {
       commit('SET_YEAR', year)
     }
+  },
+  modules: {
+    todomvc
   }
 })

@@ -1,9 +1,6 @@
 <template>
   <div>
-    <a-alert :message="`hello ${year}`"
-             banner
-             type="success"
-             closable />
+    <a-alert :message="`hello ${year}`" banner type="success" closable />
     <div :class="$style.root">home，{{ year }}</div>
 
     <ul :class="$style.list">
@@ -11,10 +8,8 @@
     </ul>
 
     <a-button-group>
-      <a-button type="primary"
-                @click="onClickA"> 加1加</a-button>
-      <a-button type="primary"
-                @click="onClickB"> 减1减 </a-button>
+      <a-button type="primary" @click="onClickA"> 加1加</a-button>
+      <a-button type="primary" @click="onClickB"> 减1减 </a-button>
     </a-button-group>
   </div>
 </template>

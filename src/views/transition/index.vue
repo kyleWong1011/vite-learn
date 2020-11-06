@@ -1,10 +1,8 @@
 <template>
-  <transition-group name="list"
-                    tag="ul">
-    <li class="item"
-        v-for="(item,index) in list"
-        :key="index">
-      <span>{{item}}</span>
+  <transition-group name="list" tag="ul">
+    <!--!!! 这里的:key如果是使用的index, 动画效果会出现问题 -->
+    <li class="item" v-for="(item, index) in list" :key="item">
+      <span>{{ item }}</span>
       <button @click="remove(item)">remove</button>
     </li>
   </transition-group>
@@ -12,7 +10,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'Index',
   data() {
     return {
       list: ['a', 'b', 'c', 'd']

@@ -36,8 +36,13 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../views/slot-api/index.vue')
   },
   {
+    path: '/todomvc',
+    name: 'todomvc',
+    component: () => import('../views/todomvc/index.vue')
+  },
+  {
     path: '/todo-list',
-    name: 'todoList',
+    name: 'todolist',
     component: () => import('../views/todo-list/index.vue')
   },
   {

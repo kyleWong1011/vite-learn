@@ -1,39 +1,42 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.main">
-      <a-input-search v-model:value="state.value"
-                      placeholder="input search text"
-                      @search="onSubmit"
-                      @change="onChange">
+      <a-input-search
+        v-model:value="state.value"
+        placeholder="input search text"
+        @search="onSubmit"
+        @change="onChange"
+      >
         <template v-slot:enterButton>
           <a-button> 提交 </a-button>
         </template>
       </a-input-search>
-      <a-button :class="$style.btn"
-                @click="onFilter"> 过滤 </a-button>
-      <a-button :class="$style.btn"
-                @click="onReset"> 重置 </a-button>
+      <a-button :class="$style.btn" @click="onFilter"> 过滤 </a-button>
+      <a-button :class="$style.btn" @click="onReset"> 重置 </a-button>
     </div>
-    <ul v-if="state.list.length>0"
-        :class="$style.listWrapper">
-      <li v-for="(item, index) in state.list"
-          :key="item.id"
-          :style="{ color:'#'+item.id}"
-          :class="$style.item">
+    <transition-group
+      v-if="state.list.length > 0"
+      :class="$style.listWrapper"
+      name="list"
+      tag="ul"
+    >
+      <li
+        v-for="(item, index) in state.list"
+        :key="item.id"
+        :style="{ color: '#' + item.id }"
+        :class="$style.item"
+      >
         <span style="margin-right: 15px">
           {{ index }}
         </span>
-        <p :class="$style.text"
-           @click="onTest">
+        <p :class="$style.text" @click="onTest">
           {{ item.name }}
         </p>
-        <a-button type="danger"
-                  :class="$style.btn"
-                  @click="onRemove(index)">
+        <a-button type="danger" :class="$style.btn" @click="onRemove(index)">
           remove
         </a-button>
       </li>
-    </ul>
+    </transition-group>
 
     <a-empty v-else />
   </div>
@@ -134,4 +137,10 @@ export default {
     padding 5px 0
     .text
       flex 1
+</style>
+<style lang="stylus" scoped>
+.list-enter-active, .list-leave-active
+  transition all 0.3s
+.list-enter-from, .list-leave-to
+  height 0
 </style>
