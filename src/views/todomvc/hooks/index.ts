@@ -1,7 +1,11 @@
+import { watch } from 'vue'
 import { Store, useStore } from 'vuex'
 import {
   SET_TODO,
-  SET_TODO_LIST
+  SET_TODO_LIST,
+  REMOVE_TODO,
+  SET_STATUS,
+  SET_DOING
 } from '../../../store/modules/todomvc/actionTypes'
 import { I_Todo, TODO_STATUS } from '../../../typings'
 
@@ -24,6 +28,16 @@ function useTodo(): I_UseTodo {
 
   const todoList: I_Todo[] = getLocalList()
 
+  // 监听数组发生变化
+  watch(
+    () => store.state.todomvc.list,
+    (todoList: I_Todo[]) => {
+      // TODO 待解决
+      console.log('watch==>', { todoList })
+      setLocalList(todoList)
+    }
+  )
+
   function setTodo(value: string): void {
     const todo: I_Todo = {
       id: new Date().getTime(),
@@ -31,7 +45,6 @@ function useTodo(): I_UseTodo {
       status: TODO_STATUS.WILLDO
     }
     store.dispatch(SET_TODO, todo)
-    setLocalList(store.state.todomvc.list)
   }
 
   function setTodoList(): void {
@@ -39,15 +52,15 @@ function useTodo(): I_UseTodo {
   }
 
   function removeTodo(id: number): void {
-    console.log('removeTodo', id)
+    store.dispatch(REMOVE_TODO, id)
   }
 
   function setStatus(id: number): void {
-    console.log('setStatus', id)
+    store.dispatch(SET_STATUS, id)
   }
 
   function setDoing(id: number): void {
-    console.log('setDoing', id)
+    store.dispatch(SET_DOING, id)
   }
 
   return { setTodo, setTodoList, removeTodo, setStatus, setDoing }
@@ -61,6 +74,7 @@ function useLocalStorage(): I_UseLocalStorage {
   function setLocalList(todolist: I_Todo[]): void {
     localStorage.setItem('todolist', JSON.stringify(todolist))
   }
+
   return {
     getLocalList,
     setLocalList

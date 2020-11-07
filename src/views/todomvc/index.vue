@@ -1,6 +1,8 @@
 <template>
-  <todo-input />
-  <todo-list :todo-list="todoList" />
+  <div :class="$style.root">
+    <todo-input class="mb15" />
+    <todo-list :todo-list="todoList" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -11,8 +13,6 @@ import { useTodo, I_UseTodo } from './hooks'
 
 import { computed, defineComponent, onMounted } from 'vue'
 import { useStore } from 'vuex'
-// import { createNamespacedHelpers } from 'vuex'
-// const { mapState } = createNamespacedHelpers('todomvc')
 
 export default defineComponent({
   name: 'TodoMvc',
@@ -34,8 +34,10 @@ export default defineComponent({
       setTodoList()
     })
 
+    const todoList = computed(() => store.state.todomvc.list)
+
     return {
-      todoList: computed(() => store.state.todomvc.list),
+      todoList,
       removeTodo,
       setStatus,
       setDoing
@@ -43,3 +45,9 @@ export default defineComponent({
   }
 })
 </script>
+<style lang="stylus" module>
+.root
+  display flex
+  flex-direction column
+  padding 20px
+</style>

@@ -28,7 +28,6 @@ export default defineComponent({
   },
   setup(props, { emit, attrs }) {
     const { setStatus, setDoing, removeTodo } = useTodo()
-    console.log({ attrs })
     return {
       removeTodo,
       setStatus,

@@ -1,26 +1,34 @@
 <template>
-  <div>
-    <input
-      type="checkbox"
+  <div :class="$style.root">
+    <a-checkbox
       :checked="item.status === FINISHED"
-      @click="setStatus(item.id)"
-    />
-    <span :class="item.status === FINISHED && $style.active">{{
-      item.content
-    }}</span>
-
-    <button @click="removeTodo">删除</button>
-    <button
-      v-if="item.status !== FINISHED"
-      :class="item.status"
-      @click="setDoing(item.id)"
+      @change="setStatus(item.id)"
     >
-      {{ item.status === DOING ? '正在做...' : '马上做' }}
-    </button>
+      <span :class="item.status === FINISHED && $style.active">{{
+        item.content
+      }}</span>
+    </a-checkbox>
+
+    <a-button-group>
+      <a-button type="danger" @click="removeTodo(item.id)">
+        <!-- <left-outlined /> -->
+        删除
+      </a-button>
+      <a-button
+        v-if="item.status !== FINISHED"
+        :type="item.status === DOING ? 'primary' : 'dashed'"
+        :class="item.status"
+        @click="setDoing(item.id)"
+      >
+        {{ item.status === DOING ? '正在做...' : '马上做' }}
+      </a-button>
+    </a-button-group>
   </div>
 </template>
 
 <script lang="ts">
+// import { LeftOutlined } from '@ant-design/icons-vue'
+
 import { defineComponent, PropType } from 'vue'
 import { I_Todo, TODO_STATUS } from '../../../typings'
 
@@ -32,6 +40,9 @@ interface I_StatusState {
 
 export default defineComponent({
   name: 'TodoItem',
+  // components: {
+  //   LeftOutlined
+  // },
   props: {
     item: Object as PropType<I_Todo>
   },
@@ -73,6 +84,11 @@ export default defineComponent({
 </script>
 
 <style module lang="stylus">
+.root
+  border-bottom 1px solid #f7f7f7
+  line-height 40px
+  display flex
+  justify-content space-between
 .active
  color red
 .willdo
