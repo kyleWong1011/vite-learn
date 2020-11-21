@@ -30,7 +30,7 @@
 // import { LeftOutlined } from '@ant-design/icons-vue'
 
 import { defineComponent, PropType } from 'vue'
-import { I_Todo, TODO_STATUS } from '../../../typings'
+import { ITodo, TODO_STATUS } from '../../../typings'
 
 interface I_StatusState {
   DOING: TODO_STATUS.DOING
@@ -44,7 +44,7 @@ export default defineComponent({
   //   LeftOutlined
   // },
   props: {
-    item: Object as PropType<I_Todo>
+    item: Object as PropType<ITodo>
   },
   setup(props, { emit }) {
     //Todo! 此处是静态的，没必要使用响应式

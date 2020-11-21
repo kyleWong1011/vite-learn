@@ -6,18 +6,18 @@ import {
   SET_TODO_LIST
 } from './actionTypes'
 import { Commit } from 'vuex'
-import { I_Todo, I_State } from '../../../typings'
+import { ITodo, IState } from '../../../typings'
 
 interface I_Ctx {
   commit: Commit
-  state: I_State
+  state: IState
 }
 
 export default {
-  [SET_TODO]({ commit }: I_Ctx, todo: I_Todo): void {
+  [SET_TODO]({ commit }: I_Ctx, todo: ITodo): void {
     commit(SET_TODO, todo)
   },
-  [SET_TODO_LIST]({ commit }: I_Ctx, todoList: I_Todo[]): void {
+  [SET_TODO_LIST]({ commit }: I_Ctx, todoList: ITodo[]): void {
     commit(SET_TODO_LIST, todoList)
   },
   [REMOVE_TODO]({ commit }: I_Ctx, id: number): void {

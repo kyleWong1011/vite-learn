@@ -1,5 +1,6 @@
 import { watch } from 'vue'
 import { Store, useStore } from 'vuex'
+
 import {
   SET_TODO,
   SET_TODO_LIST,
@@ -7,7 +8,7 @@ import {
   SET_STATUS,
   SET_DOING
 } from '../../../store/modules/todomvc/actionTypes'
-import { I_Todo, TODO_STATUS } from '../../../typings'
+import { ITodo, TODO_STATUS } from '../../../typings'
 
 export interface I_UseTodo {
   setTodo: (value: string) => void
@@ -18,28 +19,27 @@ export interface I_UseTodo {
 }
 
 interface I_UseLocalStorage {
-  getLocalList: () => I_Todo[]
-  setLocalList: (todolist: I_Todo[]) => void
+  getLocalList: () => ITodo[]
+  setLocalList: (todolist: ITodo[]) => void
 }
 
 function useTodo(): I_UseTodo {
   const store: Store<any> = useStore()
   const { getLocalList, setLocalList }: I_UseLocalStorage = useLocalStorage()
 
-  const todoList: I_Todo[] = getLocalList()
+  const todoList: ITodo[] = getLocalList()
 
   // 监听数组发生变化
   watch(
     () => store.state.todomvc.list,
-    (todoList: I_Todo[]) => {
+    (todoList: ITodo[]) => {
       // TODO 待解决
-      console.log('watch==>', { todoList })
       setLocalList(todoList)
     }
   )
 
   function setTodo(value: string): void {
-    const todo: I_Todo = {
+    const todo: ITodo = {
       id: new Date().getTime(),
       content: value,
       status: TODO_STATUS.WILLDO
@@ -67,11 +67,11 @@ function useTodo(): I_UseTodo {
 }
 
 function useLocalStorage(): I_UseLocalStorage {
-  function getLocalList(): I_Todo[] {
+  function getLocalList(): ITodo[] {
     return JSON.parse(localStorage.getItem('todolist') || '[]')
   }
 
-  function setLocalList(todolist: I_Todo[]): void {
+  function setLocalList(todolist: ITodo[]): void {
     localStorage.setItem('todolist', JSON.stringify(todolist))
   }
 

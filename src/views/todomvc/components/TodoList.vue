@@ -14,14 +14,14 @@
 <script lang="ts">
 import TodoItem from './TodoItem.vue'
 import { defineComponent, PropType } from 'vue'
-import { I_Todo } from '../../../typings'
+import { ITodo } from '../../../typings'
 import { useTodo } from '../hooks'
 
 export default defineComponent({
   name: 'TodoList',
   props: {
     // 断言
-    todoList: Array as PropType<I_Todo[]>
+    todoList: Array as PropType<ITodo[]>
   },
   components: {
     TodoItem

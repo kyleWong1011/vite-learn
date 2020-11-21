@@ -79,14 +79,6 @@ export default {
     console.log({ window })
     console.log({ globalThis })
 
-    // if (state.timer) {
-    //   clearInterval(Number(state.timer))
-    // } else {
-    //   state.timer = setInterval(() => {
-    //     countRef.value += 100
-    //   }, 1000)
-    // }
-
     return {
       state,
       add,

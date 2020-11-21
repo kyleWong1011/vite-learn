@@ -2,16 +2,18 @@
   "name": "vite",
   "version": "0.0.0",
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
+    "@types/lodash-es": "^4.17.3",
     "ant-design-vue": "^2.0.0-beta.10",
     "axios": "^0.20.0",
     "lodash-es": "^4.17.15",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-beta.11",
-    "vuex": "^4.0.0-beta.4"
+    "vue-router": "^4.0.0-rc.4",
+    "vuex": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0",

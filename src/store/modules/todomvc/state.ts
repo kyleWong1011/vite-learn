@@ -1,5 +1,5 @@
-import { I_State } from '../../../typings'
+import { IState } from '../../../typings'
 
-export default <I_State>{
+export default <IState>{
   list: []
 }

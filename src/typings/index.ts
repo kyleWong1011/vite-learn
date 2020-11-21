@@ -1,11 +1,11 @@
-export interface I_Todo {
+export interface ITodo {
   id: number
   content: string
   status: TODO_STATUS
 }
 
-export interface I_State {
-  list: I_Todo[]
+export interface IState {
+  list: ITodo[]
 }
 
 export enum TODO_STATUS {
