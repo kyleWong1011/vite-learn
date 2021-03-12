@@ -25,29 +25,25 @@
 import { ref, reactive } from '@vue/reactivity'
 import { watchEffect, defineComponent, onMounted } from '@vue/runtime-core'
 
-export default defineComponent({
-  setup() {
-    let obj = reactive({ foo: 1 })
-    watchEffect(async (onInvalidate) => {
-      let validate = true
-      onInvalidate(() => {
-        validate = false
-      })
-      const data = await fetch(obj.foo)
-      if (validate) {
-        /* 正常使用 data */
-        console.log({ data })
-      } else {
-        /* 说明当前副作用已经无效了，抛弃即可 */
-        console.log('invalidate')
-      }
-    })
-
-    onMounted(() => {
-      console.log(123)
-    })
-  }
-})
+// export default defineComponent({
+//   setup() {
+//     let obj = reactive({ foo: 1 })
+//     watchEffect(async (onInvalidate) => {
+//       let validate = true
+//       onInvalidate(() => {
+//         validate = false
+//       })
+//       const data = await fetch(obj.foo)
+//       if (validate) {
+//         /* 正常使用 data */
+//         console.log({ data })
+//       } else {
+//         /* 说明当前副作用已经无效了，抛弃即可 */
+//         console.log('invalidate')
+//       }
+//     })
+//   }
+// })
 </script>
 
 <style scoped lang="stylus">

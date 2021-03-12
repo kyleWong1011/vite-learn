@@ -38,7 +38,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/slot-api',
     name: 'slot',
-    component: () => import('@/views/slot-api/index')
+    component: () => import('../views/slot-api/index')
   },
   {
     path: '/todomvc',
@@ -58,8 +58,6 @@ export const routes: RouteRecordRaw[] = [
 ]
 
 const routerHistory: RouterHistory = createWebHistory()
-
-console.log({ routerHistory })
 
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
