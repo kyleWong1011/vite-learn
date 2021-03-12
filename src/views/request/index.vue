@@ -3,8 +3,9 @@
     <a-input-search v-model:value="query"
                     placeholder="input search text"
                     :class="$style.input"
+                    :loading="loading"
                     @search="queryData">
-      <template v-slot:enterButton>
+      <template #enterButton>
         <a-button> 提交</a-button>
       </template>
     </a-input-search>
@@ -18,7 +19,8 @@
              banner
              closable />
 
-    <a-empty v-if="!loading && !hasData" />
+    <a-empty v-if="quered && !loading && !hasData"
+             description="暂无数据" />
 
     <ul v-if="hasData"
         :class="$style.list">
@@ -45,6 +47,7 @@ export default {
     // })
 
     const state = {
+      quered: ref(false),
       query: ref(''),
       loading: ref(false),
       error: ref(false),
@@ -54,6 +57,7 @@ export default {
     async function queryData(query?: string) {
       if (state.query.value === '') return $message.error('请输入搜索内容')
 
+      state.quered.value = true
       state.error.value = false
       state.loading.value = true
       state.hits.value = []
@@ -79,8 +83,13 @@ export default {
 
     const hasData = computed(() => state.hits.value.length > 0)
 
+    function loadingData() {
+      console.log('loading')
+    }
+
     return {
       ...state,
+      loadingData,
       hasData,
       queryData
     }
@@ -108,4 +117,6 @@ export default {
       line-height 40px
       height 40px
       overflow hidden
+  :global(.ant-empty)
+    padding-top 20px
 </style>

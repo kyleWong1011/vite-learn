@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import { routes } from './router'
+import { routes } from './routes'
 import './app.styl'
 
 export default defineComponent({
